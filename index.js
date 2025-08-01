@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import router from "./routes/route.js";
-import URL from './models/url.js';
+import URL from "./models/url.js";
 
 dotenv.config();
 
@@ -14,10 +14,10 @@ const PORT = 7000;
 const app = express();
 app.use(express.json());
 app.use("/url", router);
-app.get("/:shortId", async (req, res) => {
-  const id = req.params.shortId;
-  const entry = 
-});
+// app.get("/:shortId", async (req, res) => {
+//   const id = req.params.shortId;
+//   const entry = await URL.findOneAndUpdate({id} , {$push : })
+// });
 app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
 });
