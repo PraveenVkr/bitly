@@ -14,10 +14,20 @@ const PORT = 7000;
 const app = express();
 app.use(express.json());
 app.use("/url", router);
-// app.get("/:shortId", async (req, res) => {
-//   const id = req.params.shortId;
-//   const entry = await URL.findOneAndUpdate({id} , {$push : })
-// });
+app.get("/:shortId", async (req, res) => {
+  const shortId = req.params.shortId;
+  const entry = await URL.findOneAndUpdate(
+    { shortId },
+    {
+      $push: {
+        visitHistory: {
+          timestamp: Date.now(),
+        },
+      },
+    }
+  );
+  return res.redirect(entry.redirectUrl);
+});
 app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
 });
